@@ -1,0 +1,21 @@
+<div class="container wrapper">
+    <h3>Bienvenido.</h3>
+    <div class="contaner">
+        <ng-progress
+            [positionUsing]="'center'"
+            [direction]="'leftToRightIncreased'"
+            [color]="'#4286f4'"
+            [trickleSpeed]="500" 
+            [thick]="true" 
+            [ease]="'easeInSine'"
+        ></ng-progress>
+        <div class="" >
+            <table class="table">
+                <tr class="" *ngFor='let item of UserDetails'>
+                    <td>{{item[0]}} => {{item[1]}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+</div>
