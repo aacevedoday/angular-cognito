@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../shared/services";
 import { CookieService } from 'ngx-cookie-service';
 
+declare var $: any;
 
 @Component({
   selector: "app-login",

@@ -18,7 +18,6 @@ import { AuthService, AuthGuard } from "./shared/services";
 import { CookieService } from 'ngx-cookie-service';
 import { NgProgressModule } from 'ngx-progressbar';
 
-
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent],
   imports: [
