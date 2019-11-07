@@ -28,7 +28,8 @@
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/jquery.backstretch.js",
-              "src/assets/js/custom.js"]
+              "node_modules/bootstrap/js/dist/carousel.js",
+              "node_modules/bootstrap/js/dist/util.js"]
           },
           "configurations": {
             "production": {

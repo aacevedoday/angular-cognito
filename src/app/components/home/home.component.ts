@@ -7,6 +7,9 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./../../shared/services";
 import { Router } from "@angular/router";
 import { NgProgress } from 'ngx-progressbar';
+import { FormControl,  FormGroup  } from '@angular/forms';
+import { User } from '../../models';
+declare var $: any;
 
 @Component({
   selector: "app-home",
@@ -15,9 +18,15 @@ import { NgProgress } from 'ngx-progressbar';
 })
 export class HomeComponent implements OnInit {
   public UserDetails: any;
-  constructor(public authService: AuthService, public router: Router, public ngProgress: NgProgress) {}
+  public form: FormGroup;
+  constructor(public authService: AuthService, public router: Router, public ngProgress: NgProgress, public user:User) {}
+  
   ngOnInit() {
+    $('.carouselExampleIndicators').carousel()
+    this.createForm();
+    this.disableBackstretch();
     this.getUserDetails();
+    console.log(this.user)
   }
   /**
    * @method getUserDetails Get the logged in user info
@@ -25,19 +34,7 @@ export class HomeComponent implements OnInit {
    */
   public getUserDetails(): void {
     this.ngProgress.start();
-    this.authService.userAttributes().subscribe(
-        (response) => { 
-          this.UserDetails = []
-          Object.keys(response).map((key) => {
-            this.UserDetails.push( [ key, response[key] ])  
-          })
-        },
-        err => console.log(err),
-        ()  => { 
-          this.ngProgress.done();
-          console.log(this.UserDetails)
-         } 
-    );
+    this.ngProgress.done();
   }
   /**
    * @method logout Logout user
@@ -53,5 +50,17 @@ export class HomeComponent implements OnInit {
     this.router.navigate([""]);
   }
 
-  
+  public disableBackstretch(){
+    $('.backstretch').remove();
+  }
+
+
+  public createForm() {
+    
+    this.form = new FormGroup ({
+      asunto: new FormControl(),
+      mensaje: new FormControl()
+    });
+
+  }
 }

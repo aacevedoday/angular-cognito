@@ -6,23 +6,22 @@
             <p>Desde el 2012, COLFUTURO administra diferentes programas académicos nacionales y del exterior. Si usted es candidato o beneficiario deberá registrarse para acceder a todos los servicios.
             </p>
             <form [formGroup]="loginForm" (ngSubmit)="OnSubmit()" class="login-form">
+                
                 <div class="form-group">
-                    <label>Cédula</label>
-                    <input matInput formControlName="username"/>
-<!--                     <mat-form-field class="content-fit">
-                        <input matInput formControlName="username" placeholder="Username" />
-                    </mat-form-field> -->
+                    <label>Cédula <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                    <input matInput formControlName="username" required>
+                    <div *ngIf='username.invalid' class="error">
+                        El numero de cédula no es valido
+                    </div>
                 </div>
+
+
                 <div class="form-group">
-                    <label>Clave</label>
-                    <input matInput formControlName="password" type="password" />
-<!--                     <mat-form-field class="content-fit">
-                        <input matInput placeholder="Password" formControlName="password" type="password" />
-                    </mat-form-field> -->
+                    <label>Clave <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                    <input matInput formControlName="password" type="password" required/>
                 </div>
-                <div class="form-group">
-                    <button type="submit">INGRESAR</button>
-                    <!-- <button type="submit" [disabled]="!loginForm.valid"  mat-raised-button color="primary">Submit</button> -->
+                <div class="form-group" >
+                    <button type="submit" [disabled] ='!loginForm.valid' >INGRESAR</button>
                 </div>
             </form>
             <div class="item-list">
@@ -34,3 +33,4 @@
         </div>
     </div>
 </div>
+

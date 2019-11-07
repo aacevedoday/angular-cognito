@@ -1,0 +1,230 @@
+.wrapper{
+  margin-top: 20px;   
+}
+
+.wrapper-header{
+  padding: 0;
+}
+
+
+.departamentos-header{
+  background-image: url('/assets/img/BHD.jpg');
+  padding: 0;
+  background-size: cover;
+  min-height: 300px;
+}
+
+.logo-departamento{
+  border-bottom: 4px solid;
+  height: 125px;
+  color: #fff;
+}
+
+.header-login{
+  text-align: right;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.text-departamento p {
+  color: #F7E9B7;
+  font-size: 17px;
+  text-shadow: 0.1em 0.1em #333;
+  padding: 14px;
+}
+
+.departamento-footer {
+  width: 340px;
+  height: 55px;
+  float: right;
+  position: relative;
+  background-position: right;
+}
+
+.button.green{
+  background: rgb(70,123,128);
+  background: -moz-linear-gradient(left,rgba(70,123,128,1) 0%,rgba(97,172,196,1) 100%);
+  background: -webkit-gradient(linear,left top,right top,color-stop(0%,rgba(70,123,128,1)),color-stop(100%,rgba(97,172,196,1)));
+  background: -webkit-linear-gradient(left,rgba(70,123,128,1) 0%,rgba(97,172,196,1) 100%);
+  background: -o-linear-gradient(left,rgba(70,123,128,1) 0%,rgba(97,172,196,1) 100%);
+  background: -ms-linear-gradient(left,rgba(70,123,128,1) 0%,rgba(97,172,196,1) 100%);
+  background: linear-gradient(to right,rgba(70,123,128,1) 0%,rgba(97,172,196,1) 100%);
+}
+
+
+
+.scolciencias-form-login{
+  text-align: center;
+  padding: 0 1rem 1rem;
+  display: block;
+  .login-form{
+    label{
+      width: 100%;
+    }
+    input{
+      width: 100%;
+      border-radius: 5px;
+      background-color: rgba(177, 205, 208, 0.69);
+      color: #FFFFFF;
+      text-align: center;
+    }
+    button{
+      background-color: rgb(253, 214, 123);
+      border: none;
+      color: rgb(42, 140, 150);
+      padding: 5px 52px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  }
+  
+}
+
+.departamentos-content.container {
+  font-size: 15px;
+  padding: 0;
+  font-weight: 400;
+  color: #FFF;
+  width: auto;
+  background-color: rgba(49, 195, 217, 0.4);
+  border-radius: 15px 15px 15px 15px;
+}
+
+
+.button.orange{
+  background: #1e5799;
+  background: -moz-linear-gradient(left,#1e5799 0%,#ef772e 0%,#edb493 100%);
+  background: -webkit-gradient(linear,left top,right top,color-stop(0%,#1e5799),color-stop(0%,#ef772e),color-stop(100%,#edb493));
+  background: -webkit-linear-gradient(left,#1e5799 0%,#ef772e 0%,#edb493 100%);
+  background: -o-linear-gradient(left,#1e5799 0%,#ef772e 0%,#edb493 100%);
+  background: -ms-linear-gradient(left,#1e5799 0%,#ef772e 0%,#edb493 100%);
+  background: linear-gradient(to right,#1e5799 0%,#ef772e 0%,#edb493 100%);
+}
+
+.button{
+  min-width: 100%;
+  display: inline-block;
+  color: white;
+  padding: 10px 12px;
+  font-size: 21px;
+  margin:5px;
+}
+.cedula{
+  text-align: left;
+}
+
+.columnas{
+  width: 330px;
+  float: left;
+  margin: 14px 17px;
+  padding: 13px;
+}
+
+.titulohr{
+  border-bottom: 1px solid #D8CB8B;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.departamentos-content {
+  display: inline-block;
+  background-color: #fff;
+  padding: 20px 0 0 0;
+}
+.header-login {
+  
+  
+  a {
+      text-decoration: none;
+      color: #F9CA6B;
+  }
+  ul{
+      list-style: none;
+      li{
+          display: inline-block;
+      }
+  }
+}
+
+.menu-user{
+  color: #FFF;
+  font-size: 18px;
+  background: rgba(0, 0, 0, 0.61);
+  border-bottom: 3px solid;
+  max-height: 35px;
+  
+}
+.non-padding{
+  padding:0 ;
+}
+.non-margin{
+  margin: 0;
+}
+
+.fondo-columnas {
+  background-color: #F3F7DB;
+}
+
+.items-buttons{
+  padding-top: 15px;;
+}
+
+.departamentos-fechas, .departamentos-documentos {
+  ul{
+      text-align: initial;
+      color: #989898;
+      font-family: 'Open Sans',sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      padding-left: 20px;
+  }
+}
+
+button{
+  background-color: #ADC80B;
+  border: 1px solid #ADC80B;
+  border-radius: 3px;
+  color: #FFFFFF;
+  font-family: 'Droid Sans',sans-serif;
+  font-size: 15px;
+  height: 35px;
+  text-transform: uppercase;
+  box-shadow: none!important;
+  padding: 0 52px 0 52px;
+}
+
+.block-form{
+  margin: 35px 0;
+  text-align: center;
+      .center-block{
+          min-width: 100%;
+          text-align: left;
+      }
+      
+}
+
+
+form{
+  margin: 50px 0;
+  label{
+    color: #F7E9B7;
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+  }
+  input{
+    background: #fff!important;
+    color: black!important;
+  }
+  
+}
+
+.form-required {
+  color: #c00;
+}
+.logo-departamento{
+  text-align: left;
+}
+h2{
+  color:#fad57b;
+}
