@@ -30,12 +30,15 @@ export class AuthGuard implements CanActivate {
     // If not logged in then route him towards sign in
     // If logged pass the value so that i execute the further functinoality
 
-    if(this.authService.userAttributes()){
-      this.authService.UserDetails = this.authService.userAttributes();
-      return true;
+    // if(this.authService.userAttributes()){
+    //   this.authService.UserDetails = this.authService.userAttributes();
+    //   return true;
+    // }
+
+    if(!this.authService.userIsLogin()){
+      this.router.navigate([""]);
     }
-
-
+    
     // if (!this.authService.userLoggedIn) {
     //   this.router.navigate([""]);
     // }
