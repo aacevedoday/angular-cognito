@@ -23,11 +23,12 @@ import { UpdateComponent } from './components/update/update.component';
 import { PasswordComponent } from './components/password/password.component';
 import { OdbcService } from './shared/services';
 import { HttpModule } from '@angular/http';
+import { HomeTwoComponent } from './components/home-two/home-two.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, LogoutComponent, UpdateComponent, PasswordComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, LogoutComponent, UpdateComponent, PasswordComponent, HomeTwoComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes), // Adding Router to root level so that can access entire app

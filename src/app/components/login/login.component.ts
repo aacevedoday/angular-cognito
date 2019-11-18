@@ -76,9 +76,13 @@ export class LoginComponent implements OnInit {
             this.authService.userLoggedIn = true;
             this.user.set();
             let allowed =  1;//this.user.Groups.indexOf(this.groupAllow)
-            if( allowed >= 0 ){
+            if ( allowed >= 0 ) {
               // Route to home screen after success
-              this.router.navigate(["scolciencias"]);
+              if ( this.user.selectHome() ) {
+                this.router.navigate( ["departamentos"] );
+              }else {
+                this.router.navigate( ['scolciencias'] );
+              }
             }
           }
         },

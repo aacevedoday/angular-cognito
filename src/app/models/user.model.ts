@@ -54,6 +54,10 @@ export class User {
         return this.Groups.indexOf(role);
     }
 
+    selectHome(){
+        return (this.hasRole('departamentos') >= 0) ;
+    }
+
 
     get Username(){
         return this.username;

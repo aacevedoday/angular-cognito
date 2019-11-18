@@ -9,7 +9,6 @@
     ></ng-progress>
     <div class="row">
             <div class="departamentos-header col-lg-12 col-md-12 col-sm-12">
-                    
                 <div class="header-login col-lg-12 col-md-12 col-sm-12 row">
                         <div class="logo-departamento col-lg-4 col-md-4 col-sm-4">
                                 <img src="{{user.PGP_CLAFE_URL_LOGO_APLICACION}}" style="max-width: 100%; height: 100%;">
@@ -110,7 +109,7 @@
                                     <span class="col-md-10 col-md-10 col-sm-10"> Mi Información </span>
                                     <span id="play">►</span>
                                 </a>
-                                <a *ngI='user.hasRole("colciencias")' href="http://servicioslocales.colfuturo.org:30276/convocatoriaPDBC/login.jsf?id_token=" class="button orange">
+                                <a *ngIf='user.hasRole("colciencias")' href="http://servicioslocales.colfuturo.org:30276/convocatoriaPDBC/login.jsf?id_token=" class="button orange">
                                     <span class="col-md-10 col-md-10 col-sm-10"> Ingrese a la plataforma </span>
                                     <span id="play">►</span>
                                 </a>
