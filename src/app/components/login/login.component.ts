@@ -69,18 +69,22 @@ export class LoginComponent implements OnInit {
         Username: this.loginForm.value.username,
         Password: this.loginForm.value.password
       })
-      .subscribe(result => {
-        // verify the result having the accessToken and payload information
-        if (result && result.accessToken) {
-          this.authService.userLoggedIn = true;
-          this.user.set();
-          let allowed = this.user.Groups.indexOf(this.groupAllow)
-          if( allowed >= 0 ){
-            // Route to home screen after success
-            this.router.navigate(["scolciencias"]);
+      .subscribe(
+        result => {
+          // verify the result having the accessToken and payload information
+          if (result && result.accessToken) {
+            this.authService.userLoggedIn = true;
+            this.user.set();
+            let allowed =  1;//this.user.Groups.indexOf(this.groupAllow)
+            if( allowed >= 0 ){
+              // Route to home screen after success
+              this.router.navigate(["scolciencias"]);
+            }
           }
-        }
-      });
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 

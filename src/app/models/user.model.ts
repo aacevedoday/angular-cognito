@@ -19,29 +19,30 @@ export class User {
     private PGP_PROM_NOMBRE_CORTO: any;
 
     constructor(private authService:AuthService, private odbc:OdbcService){
-        this.set()
+        this.set();
     }
 
     set(){
-        let currentUser = this.authService.userAttributes();
-        if(currentUser){
-            this.username = currentUser["cognito:username"]
-            this.name = currentUser["name"]
-            this.family_name = currentUser["family_name"]
-            this.groups = currentUser["cognito:groups"]
-            
-            this.odbc.getOdbcInfo(this.username).subscribe( 
-                (data) => { console.log(data)
-                    if(data){
-                        this.PGP_PAT_NOMBRE = data.PGP_PAT_NOMBRE  
-                        this.skin = data.skin
-                        this.color = data.color
-                        this.PGP_CLAFE_URL_LOGO_APLICACION = data.PGP_CLAFE_URL_LOGO_APLICACION
-                        this.PER_NUMERO_DOCUMENTO = data.PER_NUMERO_DOCUMENTO
-                        this.PGP_PROM_NOMBRE_CORTO = data.PGP_PROM_NOMBRE_CORTO}
+        const currentUser = this.authService.userAttributes();
+        if ( currentUser ) {
+            this.username = currentUser["cognito:username"];
+            this.name = currentUser["name"];
+            this.family_name = currentUser["family_name"];
+            this.groups = currentUser["cognito:groups"];
+            this.odbc.getOdbcInfo(this.username).subscribe (
+                (data) => { 
+                    console.log( data );
+                    if ( data ) {
+                        this.PGP_PAT_NOMBRE = data.PGP_PAT_NOMBRE;
+                        this.skin = data.skin;
+                        this.color = data.color;
+                        this.PGP_CLAFE_URL_LOGO_APLICACION = data.PGP_CLAFE_URL_LOGO_APLICACION;
+                        this.PER_NUMERO_DOCUMENTO = data.PER_NUMERO_DOCUMENTO;
+                        this.PGP_PROM_NOMBRE_CORTO = data.PGP_PROM_NOMBRE_CORTO
+                    }
                 },
-                (error) => { console.log(error) },
-            )
+                (error) => { console.log(error); },
+            );
         }
     }
 
@@ -49,13 +50,17 @@ export class User {
         return this;
     }
 
+    hasRole( role: string ) {
+        return this.Groups.indexOf(role);
+    }
+
 
     get Username(){
-        return this.username
+        return this.username;
     }
 
     get Password(){
-        return this.username
+        return this.username;
     }
 
     get Name(){

@@ -10,13 +10,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class OdbcService {
 
-  private base:string = 'https://www.colfuturo.org/odbc-api/odbc-api.php';
+  private base = 'https://www.colfuturo.org/odbc-api/odbc-api.php';
 
-  constructor(private http:Http) {}
+  constructor(private http: Http) {}
 
 
-  getOdbcInfo( value:number ): Observable<any>{
-    return this.http.post(this.base, {identification: value})
-      .map( response => response.json()  );
+  getOdbcInfo( value: Number ): Observable<any> {
+    return this.http.get(this.base + '?identification=' + value )
+      .map( response => response.json() );
   }
 }
