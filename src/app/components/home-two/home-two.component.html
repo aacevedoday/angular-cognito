@@ -1,0 +1,163 @@
+<div class="container">
+  <ng-progress
+      [positionUsing]="'center'"
+      [direction]="'leftToRightIncreased'"
+      [color]="'#4286f4'"
+      [trickleSpeed]="500" 
+      [thick]="true" 
+      [ease]="'easeInSine'"
+  ></ng-progress>
+  <div class="row">
+          <div class="departamentos-header home-two col-lg-12 col-md-12 col-sm-12">
+              <div class="header-login col-lg-12 col-md-12 col-sm-12 row">
+                    <div class="logo-departamento col-lg-8 col-md-8 col-sm-8">
+                      <img src="/assets/img/colciencias_cabezote_becariosnew.png" style="max-width: 100%; height: auto;">
+                      <div class="menu-user col-md-4">
+                        <ul>
+                            <li class="cedula col-md-3">{{user.Username}}</li>
+                            <li class="update-data col-md-6"><a href="user/update">Actualizar datos</a></li>
+                            <!-- <li class="password col-md-3"><a href="user/password">Cambiar clave</a></li> -->
+                            <li class="icon col-md-1"><a href="user/logout"><span class="exit"> Salir </span> </a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                      <div class="block-content content">
+                        <a href="https://colciencias.agenti.com.co/agenti_lite_colc/" class="ext">
+                         <img src="/assets/img/galileo.png" width="100%"  alt="">
+                        </a>
+                      </div>
+                    </div>
+              </div>
+          </div>
+      <div class="departamentos-content">
+          <div class="col-lg-12 col-md-12 col-sm-12 row non-margin non-padding">
+              <div class="col-lg-8 non-padding">
+                <div class="col-lg-12 col-md-12 col-sm-12 non-padding">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100" src="/assets/img/demo.png" alt="First slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="/assets/img/demo2.png" alt="Second slide">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="/assets/img/demo.png" alt="Third slide">
+                                </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 row contenido">
+                    <div class="col-lg-12">
+                        <span id="titulo_contactenos">Recomendaciones Generales</span>
+                    </div>
+                    <div class="col-lg-12">
+                      <p>
+                        Tenga en cuenta que si quiere hacer un cambio de estatus, aplazar o suspender desembolsos debe hacerlo con UN MES de anticipación.
+                      </p>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                  <div class="col-lg-12 col-md-12 col-sm-12 items-buttons">
+                          <div class="block-content content">
+
+                              <a *ngIf='user.hasRole("beneficiario")'href="http://servicioslocales.colfuturo.org:32229/PLI-Externo/index.xhtml?id_token=" class="button green">
+                                  <span class="col-md-10 col-md-10 col-sm-10"> Mi Información </span>
+                                  <span id="play">►</span>
+                              </a>
+                              <a *ngIf='user.hasRole("colciencias")' href="http://servicioslocales.colfuturo.org:30276/convocatoriaPDBC/login.jsf?id_token=" class="button orange">
+                                  <span class="col-md-10 col-md-10 col-sm-10"> Ingrese a la plataforma </span>
+                                  <span id="play">►</span>
+                              </a>
+                          </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 block-form">
+                      <div class="block-inner clearfix">  
+  
+                          <div class="block-content content"><p id="titulo_contactenos">Contáctenos</p>
+                        <p>Hemos Dispuesto los siguientes mecanismos para dar una respuesta efectiva a sus preguntas:</p>
+                        <h4>ASESOR VIRTUAL</h4>
+                        <div id="envol"><p id="border_bottom"><a href="#">Galileo </a>responde sus preguntas 7/24</p></div>
+                        <h4>CORREO ELECTRÓNICO</h4>
+                        <div id="envol">
+                                <p id="border_bottom">
+                                  Estudiantes doctorales en Colombia:<br>
+                                  <a href="mailto:nacionalgbe@colfuturo.org" class="mailto">nacionalgbe@colfuturo.org<span class="mailto"><span class="element-invisible"> (link sends e-mail)</span></span></a>
+                                </p>
+                                <p id="border_bottom">
+                                  Estudiantes doctorales exterior<br>
+                                  <a href="mailto:exteriorgbe@colfuturo.org" class="mailto">exteriorgbe@colfuturo.org<span class="mailto"><span class="element-invisible"> (link sends e-mail)</span></span></a>
+                                </p>
+                                <p id="border_bottom">
+                                  Cartera:<br>
+                                  <a href="mailto:carteragbe@colfuturo.org" class="mailto">carteragbe@colfuturo.org<span class="mailto"><span class="element-invisible"> (link sends e-mail)</span></span></a>
+                                </p>
+                        </div>
+                        <h4>TELÉFONOS</h4>
+                        
+                        <!-- <div class="day-accordion ui-accordion ui-widget ui-helper-reset" style="undefined" id="day-accordion-3" role="tablist">
+                        <h3 class="title-day-accordion ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" style="" role="tab" id="ui-accordion-day-accordion-3-header-0" aria-controls="ui-accordion-day-accordion-3-panel-0" aria-selected="false" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+                        &nbsp; &nbsp; Llámenos desde el exterior sin costo</h3>
+                        <div class="content-day-accordion ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="display: none; height: 447px;" id="ui-accordion-day-accordion-3-panel-0" aria-labelledby="ui-accordion-day-accordion-3-header-0" role="tabpanel" aria-expanded="false" aria-hidden="true">
+                        <p>
+                        </p> -->
+                        <!--<div id="content">
+                           <p>
+                             <strong>Estados Unidos</strong><br>
+                            Miami<br>
+                            
+                            1-305 6751568<br>
+                            1-305 6751566<br>
+                             
+                           </p>
+                           <p>
+                            <strong>España</strong><br>
+                             Madrid<br>
+                             34-911 436652<br>
+                           </p>
+                           <p>
+                             <strong>Reino Unido</strong><br>
+                            Londres<br>
+                            44-2033185367<br>
+                           </p>
+                           <p>
+                             <strong>Francia</strong><br>
+                            París<br>
+                            33-182 883150<br>
+                           </p>
+                           <p>
+                             <strong>Italia</strong><br>
+                            Milán<br>
+                            39-024 0326216<br>
+                           </p>
+                           <p>
+                             <strong>Australia</strong><br>
+                             Sídney<br>
+                             61-291 912764<br>
+                           </p>	
+                          </div>	 -->
+                        <!-- <p></p>
+                        </div>
+                        </div></div> -->
+                          </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
