@@ -45,7 +45,16 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+            <form [formGroup]="forgotPasswordForm" (ngSubmit)="OnSubmit()" class="login-form row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                    <label>Identificación: <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                    <input matInput formControlName="username" required>
+                </div>
+                <br>
+                <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                    <button type="submit" [disabled] ='!forgotPasswordForm.valid'> Guardar </button>
+                </div>
+            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

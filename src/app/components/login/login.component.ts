@@ -22,6 +22,7 @@ declare var $: any;
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public groupAllow: String;
+  public forgotPasswordForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -51,6 +52,11 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: new FormControl(this.user.Username ,[Validators.required, Validators.min(5)]),
       password: new FormControl(this.user.Password,[Validators.required])
+    });
+
+
+    this.forgotPasswordForm = this.fb.group({
+      username: new FormControl(this.user.Username, [Validators.required, Validators.min(9)])
     });
   } 
 
