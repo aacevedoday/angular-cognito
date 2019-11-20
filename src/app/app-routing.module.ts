@@ -22,8 +22,8 @@ export const routes: Routes = [
     path: "",
     component: LoginComponent
   },
-  { path: "scolciencias", component: HomeComponent, canActivate: [AuthGuard] },
-  { path: "departamentos", component: HomeTwoComponent, canActivate: [AuthGuard] },
+  { path: "departamentos", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "scolciencias", component: HomeTwoComponent, canActivate: [AuthGuard] },
   { path: "user/update", component: UpdateComponent, canActivate: [AuthGuard] },
   { path: "user/password", component: PasswordComponent, canActivate: [AuthGuard] },
   { path: "user/logout", component: LogoutComponent, canActivate: [AuthGuard] },

@@ -17,6 +17,7 @@ export class User {
     private PGP_CLAFE_URL_LOGO_APLICACION: any;
     private PER_NUMERO_DOCUMENTO: any;
     private PGP_PROM_NOMBRE_CORTO: any;
+    public auth_token: string;
 
     constructor(private authService:AuthService, private odbc:OdbcService){
         this.set();
@@ -51,11 +52,20 @@ export class User {
     }
 
     hasRole( role: string ) {
-        return this.Groups.indexOf(role);
+        return (this.Groups.indexOf(role) >= 0);
     }
 
     selectHome(){
-        return (this.hasRole('departamentos') >= 0) ;
+        return ( this.hasRole('colciencias') ) ;
+    }
+
+    set AuthToken( token: string ) {
+        localStorage.setItem('cognito_token', token);
+    }
+    
+
+    get AuthToken(){
+        return localStorage.getItem('cognito_token');
     }
 
 

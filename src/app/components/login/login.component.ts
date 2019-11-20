@@ -72,22 +72,26 @@ export class LoginComponent implements OnInit {
       .subscribe(
         result => {
           // verify the result having the accessToken and payload information
+          
           if (result && result.accessToken) {
             this.authService.userLoggedIn = true;
             this.user.set();
-            let allowed =  1;//this.user.Groups.indexOf(this.groupAllow)
+            this.user.AuthToken = result.idToken.jwtToken;
+            const allowed =  1;//this.user.Groups.indexOf(this.groupAllow)
             if ( allowed >= 0 ) {
               // Route to home screen after success
               if ( this.user.selectHome() ) {
-                this.router.navigate( ["departamentos"] );
-              }else {
+                this.router.navigate( [ 'departamentos' ] );
+              } else {
                 this.router.navigate( ['scolciencias'] );
               }
             }
-          }
+          } 
+          
         },
         error => {
           console.log(error);
+          alert('Usuario o contraseña incorrectos');
         });
   }
 
