@@ -11,6 +11,8 @@ import { HomeTwoComponent } from "./components/home-two";
 import { LogoutComponent } from "./components/logout";
 import { UpdateComponent } from "./components/update";
 import { PasswordComponent } from "./components/password";
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 
@@ -26,6 +28,8 @@ export const routes: Routes = [
   { path: "scolciencias", component: HomeTwoComponent, canActivate: [AuthGuard] },
   { path: "user/update", component: UpdateComponent, canActivate: [AuthGuard] },
   { path: "user/password", component: PasswordComponent, canActivate: [AuthGuard] },
+  { path: "user/change-password", component: ChangePasswordComponent, canActivate: [AuthGuard]},
+  { path: "forgot-password", component: ForgotPasswordComponent},
   { path: "user/logout", component: LogoutComponent, canActivate: [AuthGuard] },
 
 ];

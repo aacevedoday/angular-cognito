@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
     this.startBackstretch();
     this.createLoginForm();
     this.groupAllow = 'colcienciasBeneficiario';
+
+    
+
   }
   /**
    * @method createLogigForm creating an angular reactive form field with validations
@@ -107,4 +110,6 @@ export class LoginComponent implements OnInit {
         duration: 4000
       });
   }
+
+  
 }

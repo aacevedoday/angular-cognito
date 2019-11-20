@@ -115,6 +115,35 @@ export class AuthService {
     
   }
 
+  forgotPassword( data ): any {
+
+    // Defining an rxjs subject so as to emit after recieving the response
+    let forgotResult = new Subject<any>();
+    // Add the User details to amazon cognito sdk
+    const CogAuthData = new AuthenticationDetails(data);
+    // Create a user pool with cliend id and secret key
+    const CogUserPool = new CognitoUserPool(environment.cognitoPool);
+    // Instantiate an cognito user with details and pool information
+    const CogUser = new CognitoUser({
+      Username: data.Username,
+      Pool: CogUserPool
+    });
+
+      // Authenticate the cognito user with information
+    CogUser.forgotPassword( {
+      onSuccess: result => {
+        // on success send it to subject so that it will emit the success
+        forgotResult.next(result);
+      },
+      onFailure: err => {
+        // on failure send it to suvject so that will emit the error
+        forgotResult.error(err);
+      }
+      });
+      // Handling the final Observable 
+    return forgotResult.asObservable();
+  }
+
 
   userLogout(): any {
     const CogUserPool = new CognitoUserPool(environment.cognitoPool);
