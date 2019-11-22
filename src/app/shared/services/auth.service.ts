@@ -145,6 +145,31 @@ export class AuthService {
   }
 
 
+  confirmPassword( data ): any {
+
+     // Defining an rxjs subject so as to emit after recieving the response
+     let confirmForgotResult = new Subject<any>();
+     // Add the User details to amazon cognito sdk
+     const CogAuthData = new AuthenticationDetails(data);
+     // Create a user pool with cliend id and secret key
+     const CogUserPool = new CognitoUserPool(environment.cognitoPool);
+     // Instantiate an cognito user with details and pool information
+     const CogUser = new CognitoUser({
+       Username: data.Username,
+       Pool: CogUserPool
+     });
+
+    CogUser.confirmPassword( data.verificationCode, data.newPassword, {
+        onSuccess() {
+            return true;
+        },
+        onFailure(err) {
+            return err;
+        },
+    });
+  }
+
+
   userLogout(): any {
     const CogUserPool = new CognitoUserPool(environment.cognitoPool);
     let userAttributes = CogUserPool.getCurrentUser();

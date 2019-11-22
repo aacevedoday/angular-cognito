@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public groupAllow: String;
   public forgotPasswordForm: FormGroup;
+  public ConfirmPasswordForm: FormGroup;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -56,7 +58,14 @@ export class LoginComponent implements OnInit {
 
 
     this.forgotPasswordForm = this.fb.group({
-      username: new FormControl(this.user.Username, [Validators.required, Validators.min(9)])
+      username: new FormControl('', [Validators.required, Validators.min(9)])
+    });
+
+
+    this.ConfirmPasswordForm = this.fb.group({
+      code: new FormControl('', [Validators.required, Validators.min(9)]),
+      newPassword: new FormControl('', [Validators.required, Validators.min(9)]),
+      confirmNewPassword: new FormControl('', [Validators.required, Validators.min(9)])
     });
   } 
 
@@ -104,6 +113,37 @@ export class LoginComponent implements OnInit {
         });
   }
 
+
+  public OnSubmitForgotPassword(): void {
+
+    this.authService.forgotPassword({ Username: this.forgotPasswordForm.value.username} )
+    .subscribe(
+      response => {
+        console.log(response );
+        $('#ModalForgotPassword').modal('toggle');
+        $('#ModalCahngePassword').modal('toggle');
+      },
+      error => { console.log(error); }
+    );
+  }
+
+  public OnSubmitConfirmPassword(): void {
+    this.authService.confirmPassword(
+        {
+          code: this.ConfirmPasswordForm.value.code,
+          newPassword: this.ConfirmPasswordForm.value.newPassword
+        }
+      )
+    .subscribe(
+      response => {
+        console.log(response);
+        $('#ModalCahngePassword').modal('toggle');
+      },
+      error => {console.log(error); }
+    );
+
+
+  }
 
   public startBackstretch(){
     var path="assets/";

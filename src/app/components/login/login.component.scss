@@ -73,3 +73,21 @@ h1{
 .form-required {
   color: #c00;
 }
+
+
+.modal-content{
+  background-color: #1c4b54e0;
+  color:#fff;
+  input{
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgba(177, 205, 208, 0.69);
+    color: #FFFFFF;
+    text-align: center;
+    
+  }
+
+  button{
+    margin-top: 10px;
+  }
+}
