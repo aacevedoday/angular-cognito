@@ -146,7 +146,6 @@ export class AuthService {
 
 
   confirmPassword( data ): any {
-
      // Defining an rxjs subject so as to emit after recieving the response
      let confirmForgotResult = new Subject<any>();
      // Add the User details to amazon cognito sdk
@@ -159,14 +158,17 @@ export class AuthService {
        Pool: CogUserPool
      });
 
-    CogUser.confirmPassword( data.verificationCode, data.newPassword, {
+    CogUser.confirmPassword( data.code, data.newPassword, {
         onSuccess() {
-            return true;
+          confirmForgotResult.next();
         },
         onFailure(err) {
-            return err;
+          confirmForgotResult.error(err);
         },
     });
+
+    return confirmForgotResult.asObservable();
+
   }
 
 

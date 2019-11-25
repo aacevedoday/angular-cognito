@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   public groupAllow: String;
   public forgotPasswordForm: FormGroup;
   public ConfirmPasswordForm: FormGroup;
+  public messages: String;
 
   constructor(
     private fb: FormBuilder,
@@ -116,14 +117,18 @@ export class LoginComponent implements OnInit {
 
   public OnSubmitForgotPassword(): void {
 
+
+
     this.authService.forgotPassword({ Username: this.forgotPasswordForm.value.username} )
     .subscribe(
       response => {
-        console.log(response );
+        this.messages = this.traslate(response.Destination);
         $('#ModalForgotPassword').modal('toggle');
         $('#ModalCahngePassword').modal('toggle');
       },
-      error => { console.log(error); }
+      error => { 
+        this.messages = this.traslate(error.message);
+      }
     );
   }
 
@@ -131,6 +136,7 @@ export class LoginComponent implements OnInit {
     this.authService.confirmPassword(
         {
           code: this.ConfirmPasswordForm.value.code,
+          Username: this.forgotPasswordForm.value.username,
           newPassword: this.ConfirmPasswordForm.value.newPassword
         }
       )
@@ -139,9 +145,8 @@ export class LoginComponent implements OnInit {
         console.log(response);
         $('#ModalCahngePassword').modal('toggle');
       },
-      error => {console.log(error); }
+      error => { console.log(error); }
     );
-
 
   }
 
@@ -155,5 +160,22 @@ export class LoginComponent implements OnInit {
         fade: 750,
         duration: 4000
       });
+  }
+
+
+  private traslate(value: string): String {
+
+    switch(value){
+
+      case 'Attempt limit exceeded, please try after some time.':
+        return 'Numero de intentos maximos permitidos excedido, por favor intentelo mas tarde.'
+        
+      case 'Username/client id combination not found.':
+        return 'Usuario invalido.'
+        
+      
+    }
+
+    return value;
   }
 }

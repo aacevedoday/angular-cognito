@@ -61,6 +61,7 @@
             </form>
         </div>
         <div class="modal-footer">
+          <div *ngIf="messages" class="messages-error"> {{ messages }}</div>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
@@ -80,9 +81,9 @@
             </button>
           </div>
           <div class="modal-body">
-              <form [formGroup]="ConfirmPasswordForm" (ngSubmit)="OnSubmit()" class="login-form row">
+              <form [formGroup]="ConfirmPasswordForm" (ngSubmit)="OnSubmitConfirmPassword()" class="login-form row">
                   <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                    A tu correo electrónico fue enviado el código de confirmación.
+                    A tu correo electrónico {{ messages }} fue enviado el código de confirmación.
                   </div>
                   <div class="form-group col-lg-6 col-md-6 col-sm-12">
                       <label>Código: <span class="form-required" title="Este campo es obligatorio.">*</span></label>
