@@ -12,6 +12,7 @@ import { AuthService } from "../../shared/services";
 import { CookieService } from 'ngx-cookie-service';
 import { User } from '../../models/index';
 
+
 declare var $: any;
 
 @Component({
@@ -64,7 +65,7 @@ export class LoginComponent implements OnInit {
 
 
     this.ConfirmPasswordForm = this.fb.group({
-      code: new FormControl('', [Validators.required, Validators.min(9)]),
+      code: new FormControl('', [Validators.required, Validators.min(6)]),
       newPassword: new FormControl('', [Validators.required, Validators.min(9)]),
       confirmNewPassword: new FormControl('', [Validators.required, Validators.min(9)])
     });
@@ -106,18 +107,37 @@ export class LoginComponent implements OnInit {
               }
             }
           } 
-          
         },
         error => {
           console.log(error);
-          alert('Usuario o contraseña incorrectos');
+          if( typeof error.code != 'undefined'){
+            switch (error.code) {
+              case 'PasswordResetRequiredException':
+                this.authService.forgotPassword( {Username: this.loginForm.value.username } )
+                  .subscribe( 
+                    response => {
+                      console.log(response);
+                    }, 
+                    error => {
+                      console.log(error);
+                    } )
+                $('#ModalCahngePassword').modal('toggle');
+                break;
+              case 'NotAuthorizedException':
+                  alert('Usuario y contraseña invalidos.');
+                break;
+            
+              default:
+                  alert('En estos momentos el servicio no esta disponible, intentelo mas tarde.');
+                break;
+            }
+          }
+          
         });
   }
 
 
   public OnSubmitForgotPassword(): void {
-
-
 
     this.authService.forgotPassword({ Username: this.forgotPasswordForm.value.username} )
     .subscribe(
@@ -136,7 +156,7 @@ export class LoginComponent implements OnInit {
     this.authService.confirmPassword(
         {
           code: this.ConfirmPasswordForm.value.code,
-          Username: this.forgotPasswordForm.value.username,
+          Username: (this.forgotPasswordForm.value.username) ? this.forgotPasswordForm.value.username:this.loginForm.value.username,
           newPassword: this.ConfirmPasswordForm.value.newPassword
         }
       )
