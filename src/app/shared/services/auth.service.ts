@@ -21,7 +21,8 @@ import {
   CognitoUserPool,
   CognitoUser,
   CognitoUserAttribute,
-  AuthenticationDetails
+  AuthenticationDetails,
+  
 } from "amazon-cognito-identity-js"; 
 
 @Injectable()
@@ -321,6 +322,5 @@ export class AuthService {
   get UserDetails(): any {
     return this._userDetails;
   }
-
-  
+   
 }

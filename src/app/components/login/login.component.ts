@@ -202,10 +202,12 @@ export class LoginComponent implements OnInit {
       Username: this.singUpForm.value.Username
     }).subscribe(
       response => {
+        console.log(response)
         $('#ModalConfirmRegistration').modal('toggle');
         alert('Por favor inicia sesion.')
       },
       err => {
+        console.log(err)
         alert('En estos momentos el sistema no se encuentra disponible, inténtelo mas tarde.')
       }
     )
