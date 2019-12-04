@@ -56,7 +56,7 @@ export class User {
     }
 
     selectHome(){
-        return ( this.hasRole('colciencias') ) ;
+        return ( this.hasRole('colciencias') || this.hasRole('potencial') ) ;
     }
 
     set AuthToken( token: string ) {
