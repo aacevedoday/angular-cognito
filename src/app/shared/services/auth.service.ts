@@ -32,6 +32,129 @@ export class AuthService {
   private _user: any = {};
 
   constructor(public http: HttpClient, public cookieService: CookieService, private router: Router) {}
+
+
+  singUp( data ) : Observable <any> {
+
+    // Defining an rxjs subject so as to emit after recieving the response
+    let forgotResult = new Subject<any>();
+    // Add the User details to amazon cognito sdk
+    const CogUserPool = new CognitoUserPool(environment.cognitoPool);
+    // Instantiate an cognito user with details and pool information
+    
+    var attributeList = [];
+    var cognitoUser = null;
+    var dataEmail  = {
+      Name: 'email',
+      Value: data.Email
+    }
+
+    var dataphoneNumber = {
+      Name: 'phone_number',
+      Value:'+573120000000'
+    }
+
+    var dataCustomNombres = {
+      Name: 'custom:Nombres',
+      Value: data.Name
+    }
+    var dataCustomApellidos = {
+      Name: 'custom:Apellidos',
+      Value: data.Family_name
+    }
+    var dataFamilyName = {
+      Name: 'family_name',
+      Value: data.Family_name
+    }
+    var dataName = {
+      Name: 'name',
+      Value:data.Name
+    }
+    var dataPreferredUsername = {
+      Name: 'preferred_username',
+      Value: data.Name
+    }
+    var dataGivenName = {
+      Name: 'given_name',
+      Value: data.Name
+    }
+    var dataDatosFormulario = {
+      Name: 'custom:Datos_formulario',
+      Value: '1'
+    }
+
+    var dataNickname = {
+      Name: 'nickname',
+      Value: data.Name
+    }
+
+
+    var attributeEmail  = new CognitoUserAttribute(dataEmail);
+    var attributephoneNumber  = new CognitoUserAttribute(dataphoneNumber);
+    var attributeName  = new CognitoUserAttribute(dataphoneNumber);
+
+    var attributeCustomNombres = new CognitoUserAttribute(dataCustomNombres)
+    var attributeCustomApellidos = new CognitoUserAttribute(dataCustomApellidos)
+    var attributeName = new CognitoUserAttribute(dataName)
+    var attributePreferredUsername = new CognitoUserAttribute(dataPreferredUsername)
+    var attributeGivenName = new CognitoUserAttribute(dataGivenName)
+    var attributeDatosFormulario = new CognitoUserAttribute(dataDatosFormulario)
+    var attributeNickname = new CognitoUserAttribute(dataNickname)
+    var attributeFamilyName = new CognitoUserAttribute(dataFamilyName)
+    
+
+    attributeList.push(attributeEmail);
+    attributeList.push(attributephoneNumber);
+    attributeList.push(attributeName);
+    attributeList.push(attributeFamilyName);
+    attributeList.push(attributeCustomNombres);
+    attributeList.push(attributeCustomApellidos);
+    // attributeList.push(attributePreferredUsername);
+    attributeList.push(attributeDatosFormulario);
+    // attributeList.push(attributeGivenName);
+    // attributeList.push(attributeNickname);
+    let confirmForgotResult = new Subject<any>();
+
+    CogUserPool.signUp(data.Username, data.Password, attributeList, null, function (err, response){
+      if(err) {
+          confirmForgotResult.error(err);
+      }
+      confirmForgotResult.next(response);
+    })
+
+    return confirmForgotResult.asObservable()
+
+  }
+
+  confirmRegistration(data){
+
+      // Defining an rxjs subject so as to emit after recieving the response
+      let confirmResult = new Subject<any>();
+      // Add the User details to amazon cognito sdk
+      const CogUserPool = new CognitoUserPool(environment.cognitoPool);
+      
+      var userData = {
+        Username: data.Username,
+        Pool: CogUserPool,
+      };
+
+      var cognitoUser = new CognitoUser(userData);
+
+      cognitoUser.confirmRegistration(data.code, true, function(err, result) {
+        
+          if(err){
+            confirmResult.error(err)
+          }
+          confirmResult.next(result)
+        }
+      );
+
+      return confirmResult.asObservable();
+  }
+
+
+
+
   /**
    * @method authenticationCognito Login to Amanzon Cognito with provided parameters
    * @param {object} data

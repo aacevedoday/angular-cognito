@@ -12,7 +12,6 @@ import { AuthService } from "../../shared/services";
 import { CookieService } from 'ngx-cookie-service';
 import { User } from '../../models/index';
 
-
 declare var $: any;
 
 @Component({
@@ -25,7 +24,9 @@ export class LoginComponent implements OnInit {
   public groupAllow: String;
   public forgotPasswordForm: FormGroup;
   public ConfirmPasswordForm: FormGroup;
+  public singUpForm: FormGroup;
   public messages: String;
+  public confirmRegistrationForm :  FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -36,7 +37,6 @@ export class LoginComponent implements OnInit {
   ) {}
  
   ngOnInit() {
-    
     if(this.authService.userIsLogin()){
       this.router.navigate(["scolciencias"]);
     }
@@ -44,9 +44,6 @@ export class LoginComponent implements OnInit {
     this.startBackstretch();
     this.createLoginForm();
     this.groupAllow = 'colcienciasBeneficiario';
-
-    
-
   }
   /**
    * @method createLogigForm creating an angular reactive form field with validations
@@ -69,13 +66,24 @@ export class LoginComponent implements OnInit {
       newPassword: new FormControl('', [Validators.required, Validators.min(9)]),
       confirmNewPassword: new FormControl('', [Validators.required, Validators.min(9)])
     });
-  } 
 
+    this.singUpForm = this.fb.group({
+      Username: new FormControl('', [Validators.required, Validators.min(9)]),
+      Password: new FormControl('',[Validators.required, Validators.min(9)]),
+      ConfirmPassword: new FormControl('',[Validators.required, Validators.min(9)]),
+      Email:    new FormControl('',[Validators.required, Validators.email]),
+      Name:    new FormControl('',[Validators.required, Validators.min(3), Validators.max(20)]),
+      Family_name:    new FormControl('',[Validators.required, Validators.min(3), Validators.max(20)]),
+    })
+
+    this.confirmRegistrationForm = this.fb.group({
+      code: new FormControl('', [Validators.required, Validators.min(6)]),
+    })
+  } 
 
   get username() {return this.loginForm.get('username')}
 
   get password() {return this.loginForm.get('password')}
-
 
   public OnSubmit(): void {
     /**
@@ -132,7 +140,6 @@ export class LoginComponent implements OnInit {
                 break;
             }
           }
-          
         });
   }
 
@@ -170,6 +177,41 @@ export class LoginComponent implements OnInit {
 
   }
 
+  public OnSubmitRegister(): void {
+
+    this.authService.singUp({
+      Username : this.singUpForm.value.Username,
+      Email: this.singUpForm.value.Email,
+      Password: this.singUpForm.value.Password,
+      Name : this.singUpForm.value.Name,
+      Family_name: this.singUpForm.value.Family_name
+    }).subscribe(
+      response => {
+        $('#ModalRegister').modal('toggle');
+        $('#ModalConfirmRegistration').modal('toggle');
+      },
+      error => { 
+        alert('En estos momentos el sistema no se encuentra disponible, inténtelo mas tarde.')
+      }
+    )
+  }
+
+  public OnSubmitConfirmRegistration(){
+    this.authService.confirmRegistration({
+      code: this.confirmRegistrationForm.value.code,
+      Username: this.singUpForm.value.Username
+    }).subscribe(
+      response => {
+        $('#ModalConfirmRegistration').modal('toggle');
+        alert('Por favor inicia sesion.')
+      },
+      err => {
+        alert('En estos momentos el sistema no se encuentra disponible, inténtelo mas tarde.')
+      }
+    )
+  }    
+
+
   public startBackstretch(){
     var path="assets/";
     $.backstretch([
@@ -184,18 +226,13 @@ export class LoginComponent implements OnInit {
 
 
   private traslate(value: string): String {
-
     switch(value){
-
       case 'Attempt limit exceeded, please try after some time.':
         return 'Numero de intentos maximos permitidos excedido, por favor intentelo mas tarde.'
         
       case 'Username/client id combination not found.':
         return 'Usuario invalido.'
-        
-      
     }
-
     return value;
   }
 }

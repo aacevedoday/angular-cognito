@@ -26,7 +26,7 @@
             <div class="item-list">
                 <div>Si olvidó su contraseña, haga&nbsp;<a href="/forgot-password" style="color: #DFBD68;" data-toggle="modal" data-target="#ModalForgotPassword">clic aquí:</a>
                 </div>
-                <div><a href="/register" style="color: #DFBD68;">Regístrese</a>
+                <div><a href="/register" style="color: #DFBD68;" data-toggle="modal" data-target="#ModalRegister">Registrate</a>
                 </div>
             </div>
         </div>
@@ -107,3 +107,82 @@
         </div>
       </div>
     </div>
+
+<!-- Modal  Register-->
+<div class="modal fade" id="ModalRegister" tabindex="-1" role="dialog" aria-labelledby="ModalRegisterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Registrate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="singUpForm" (ngSubmit)="OnSubmitRegister()" class="login-form row">
+              <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                Para iniciar con el registro, por favor ingresa la siguiente información.
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                  <label>Identificación: <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="Username" required>
+                  <label>Nombres: <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="Name" required>
+                  <label>Apellidos <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="Family_name" required>
+                  <label>Email <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="Email" required>
+                  <label>Contraseña <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="Password" required>
+                  <label>Confirmar Contraseña <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="ConfirmPassword" required>
+                  <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12"> -->
+                  <button type="submit" [disabled] ='!singUpForm.valid'> Registrar </button>
+                  <!-- </div> -->
+              </div>
+              <br>
+              
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal  ConfirmRegister-->
+<div class="modal fade" id="ModalConfirmRegistration" tabindex="-1" role="dialog" aria-labelledby="ModalCahngePasswordTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cambia tu contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="confirmRegistrationForm" (ngSubmit)="OnSubmitConfirmRegistration()" class="login-form row">
+              <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                A tu correo electrónico {{ messages }} fue enviado el código de confirmación.
+              </div>
+              <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                  <label>Código: <span class="form-required" title="Este campo es obligatorio.">*</span></label>
+                  <input matInput formControlName="code" required>
+                  <!-- <div class="form-group col-lg-12 col-md-12 col-sm-12"> -->
+                  <button type="submit" [disabled] ='!confirmRegistrationForm.valid'> Cambiar </button>
+                  <!-- </div> -->
+              </div>
+              <br>
+              
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Confirmar</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
