@@ -33,7 +33,7 @@
     "ng-backstretch": "^0.1.3-beta",
     "ngx-cookie-service": "^2.2.0",
     "ngx-progressbar": "^2.1.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.1.0",
     "zone.js": "^0.8.26"
